@@ -17,7 +17,7 @@ OBJSC 	:= cond_ini.o
 %.o: 	%.cxx
 	$(CXX) $(CXXINC) -c $*.cxx
 
-all: tsunami.exe
+all: L-HySEA.exe
 
 tsunami.exe: $(OBJSC)
 	$(CXX) $(CXXFLAGS) -o $@ $(CXXLIBS) $(CXXINC)
