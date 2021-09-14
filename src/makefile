@@ -1,18 +1,22 @@
 .SUFFIXES:	.cu .c
 
 export UNAME = $(shell uname -m)
-export RAIZ = /share/apps/nvidia/cuda-8.0
 
-# Compilers
-export NVCC 	= $(RAIZ)/bin/nvcc
-export CXX 		= /share/apps/OPENMPI-2.1.2/bin/mpic++
+# MODIFY ONLY HERE
+export ROOT             = /share/apps/nvidia/cuda-8.0
+export OPENMPI          = /share/apps/OPENMPI-2.1.2
 
-export CXXFLAGS		= -O3 -DNDEBUG
-export CXXINC 		= -I./ -I$(RAIZ)/include -I/share/apps/OPENMPI-2.1.2/include
+# Compilers and Libraries
+export NVCC     = $(ROOT)/bin/nvcc
+export CXX              = $(OPENMPI)/bin/mpic++
+export CXX_LIB                 = $(OPENMPI)/lib
+export XX_INCLUDE             = $(OPENMPI)/include
 
-export CXXLIBS		=-L/share/apps/OPENMPI-2.1.2/lib -L./GPU -l2D_AVALANCHAS_MGPU_NETCDF -L$(RAIZ)/lib64 -lcudart -lpnetcdf
+export CXXFLAGS         = -O3 -DNDEBUG
+export CXXINC           = -I./ -I$(ROOT)/include -I$(CXX_INCLUDE)
+export CXXLIBS          =-L$(CXX_LIB) -L./GPU -l2D_AVALANCHAS_MGPU_NETCDF -L$(ROOT)/lib64 -lcudart -lpnetcdf
 
-OBJSC 	:= cond_ini.o
+OBJSC   := cond_ini.o
 
 %.o: 	%.cxx
 	$(CXX) $(CXXINC) -c $*.cxx

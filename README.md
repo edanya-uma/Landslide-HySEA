@@ -24,7 +24,7 @@ OpenMPI >= 2.1.2
 
 ## Compilation
 
-1) Copy the file src/FindNetCDF.cmake into the CMake's shared modules directory.
+1) Modify accordingly the file makefile.
 
 2) make (L-HySEA.exe should be created).
 
